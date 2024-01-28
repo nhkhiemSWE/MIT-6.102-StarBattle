@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Star Battle</title>
+
+    <style>
+        #canvas {
+            border: 1px solid black;
+            margin: 20px;
+        }
+        #outputArea {
+            border: 1px solid lightgray;
+            margin: 20px;
+            height: 256px;
+            width: 512px;
+            overflow: scroll;
+            padding: 5px;
+            white-space: pre-wrap;
+        }
+
+        /*Link for code: https://uifresh.net/css-button-style-animation-examples/ */
+        .glow-on-hover {
+            width: 220px;
+            height: 50px;
+            border: none;
+            outline: none;
+            color: #fff;
+            background: #111;
+            cursor: pointer;
+            position: relative;
+            z-index: 0;
+            border-radius: 10px;
+        }
+
+        .glow-on-hover:before {
+            content: '';
+            background: linear-gradient(45deg, #ff0000, #ff7300, #fffb00, #48ff00, #00ffd5, #002bff, #7a00ff, #ff00c8, #ff0000);
+            position: absolute;
+            top: -2px;
+            left:-2px;
+            background-size: 400%;
+            z-index: -1;
+            filter: blur(5px);
+            width: calc(100% + 4px);
+            height: calc(100% + 4px);
+            animation: glowing 20s linear infinite;
+            opacity: 0;
+            transition: opacity .3s ease-in-out;
+            border-radius: 10px;
+        }
+
+        .glow-on-hover:active {
+            color: #000
+        }
+
+        .glow-on-hover:active:after {
+            background: transparent;
+        }
+
+        .glow-on-hover:hover:before {
+            opacity: 1;
+        }
+
+        .glow-on-hover:after {
+            z-index: -1;
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: #111;
+            left: 0;
+            top: 0;
+            border-radius: 10px;
+        }
+
+        @keyframes glowing {
+            0% { background-position: 0 0; }
+            50% { background-position: 400% 0; }
+            100% { background-position: 0 0; }
+        }
+
+        .buttonOutput {
+            display: flex;
+            flex-direction: column;
+        }
+
+        body {
+            font-family: "Franklin Gothic Medium", "Franklin Gothic", "ITC Franklin Gothic", Arial, sans-serif; font-size: 24px; font-style: normal; font-variant: normal; font-weight: 700; line-height: 26.4px;
+        }
+    </style>
+</head>
+
+<body>
+    <canvas id="canvas" width="256" height="256"></canvas>
+
+    <div class="buttonOutput">
+        <button id="checkButton" class="glow-on-hover" type="button">CHECK PUZZLE</button>
+
+        <div id="outputArea"></div>
+    </div>
+
+    <script src="dist/client-bundle.js"></script>
+</body>
+</html>
